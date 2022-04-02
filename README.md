@@ -13,15 +13,19 @@ Implement a function for returning the list of customers, sorted in descending o
 val strings = listOf("bbb", "a", "cc")
 
 strings.sorted() ==
+
     listOf("a", "bbb", "cc")
     
 strings.sortedBy { it.length } ==
+
     listOf("a", "cc", "bbb")
     
 strings.sortedDescending() ==
+
     listOf("cc", "bbb", "a")
         
 strings.sortedByDescending { it.length } ==
+
     listOf("bbb", "cc", "a")
 ___________________________________________________________________________________________________________________________________________________________________
 Filter; map:
@@ -68,12 +72,15 @@ Build a map from the customer name to their city
 val list = listOf("abc", "cdef")
 
 list.associateBy { it.first() } == 
+
         mapOf('a' to "abc", 'c' to "cdef")
         
 list.associateWith { it.length } == 
+
         mapOf("abc" to 3, "cdef" to 4)
         
 list.associate { it.first() to it.length } == 
+
         mapOf('a' to 3, 'c' to 4)
 ___________________________________________________________________________________________________________________________________________________________________
 Group By:
@@ -81,11 +88,16 @@ Group By:
 Learn about grouping. Use groupBy to implement the function to build a map that stores the customers living in a given city.
 
 val result = 
+
     listOf("a", "b", "ba", "ccc", "ad")
+    
         .groupBy { it.length }
 result == mapOf(
+
     1 to listOf("a", "b"),
+    
     2 to listOf("ba", "ad"),
+    
     3 to listOf("ccc"))
 ___________________________________________________________________________________________________________________________________________________________________
 Partition:
@@ -96,9 +108,11 @@ Then implement a function for returning customers who have more undelivered orde
 val numbers = listOf(1, 3, -4, 2, -11)
 
 val (positive, negative) =
+
     numbers.partition { it > 0 }
     
 positive == listOf(1, 3, 2)
+
 negative == listOf(-4, -11)
 ___________________________________________________________________________________________________________________________________________________________________
 FlatMap:
@@ -108,6 +122,7 @@ The first should return all products the given customer has ordered
 The second should return all products that at least one customer ordered
 
 val result = listOf("abc", "12")
+
     .flatMap { it.toList() }
     
 result == listOf('a', 'b', 'c', '1', '2')
@@ -141,8 +156,11 @@ Learn about fold and reduce and implement a function that returns the set of pro
 You can use the Customer.getOrderedProducts() defined in the previous task (copy its implementation).
 
 listOf(1, 2, 3, 4)
+
     .fold(1) { partProduct, element ->
+    
         element * partProduct
+        
     } == 24
 ___________________________________________________________________________________________________________________________________________________________________
 Compound tasks:
@@ -163,29 +181,51 @@ Getting used to the new style:
 We can rewrite and simplify the following code using lambdas and operations on collections. Fill in the gaps in doSomethingWithCollection, the simplified version of the doSomethingWithCollectionOldStyle function, so that its behavior stays the same and isn't modified in any way.
 
 fun doSomethingWithCollectionOldStyle(
+
     collection: Collection<String>
+    
 ): Collection<String>? {
+    
     val groupsByLength = mutableMapOf<Int, MutableList<String>>()
+    
     for (s in collection) {
+    
         var strings: MutableList<String>? = groupsByLength[s.length]
+    
         if (strings == null) {
+    
             strings = mutableListOf()
+    
             groupsByLength[s.length] = strings
+    
         }
+    
         strings.add(s)
+    
     }
-​
+    
     var maximumSizeOfGroup = 0
+    
     for (group in groupsByLength.values) {
+    
         if (group.size > maximumSizeOfGroup) {
+    
             maximumSizeOfGroup = group.size
+    
         }
+    
     }
-​
+    
     for (group in groupsByLength.values) {
+    
         if (group.size == maximumSizeOfGroup) {
+    
             return group
+    
         }
+    
     }
+    
     return null
+    
 }
