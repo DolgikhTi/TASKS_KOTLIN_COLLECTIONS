@@ -32,7 +32,9 @@ Find all the different cities the customers are from
 Find the customers living in a given city
 
 val numbers = listOf(1, -1, 2)
+
 numbers.filter { it > 0 } == listOf(1, 2)
+
 numbers.map { it * it } == listOf(1, 1, 4)
 ___________________________________________________________________________________________________________________________________________________________________
 All, Any, and other predicates:
@@ -43,11 +45,17 @@ checkAllCustomersAreFrom should return true if all customers are from a given ci
 hasCustomerFrom should check if there is at least one customer from a given city
 countCustomersFrom should return the number of customers from a given city
 findCustomerFrom should return a customer who lives in a given city, or null if there is none
+
 val numbers = listOf(-1, 0, 2)
+
 val isZero: (Int) -> Boolean = { it == 0 }
+
 numbers.any(isZero) == true
+
 numbers.all(isZero) == false
+
 numbers.count(isZero) == 1
+
 numbers.find { it > 0 } == 2
 ___________________________________________________________________________________________________________________________________________________________________
 Associate:
